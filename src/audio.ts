@@ -15,7 +15,7 @@ export class HalloweenAudio {
  async enable() { await this.ctx.resume(); this.startAmbient(); }
  private startAmbient() {
   if(this.sources.length) return;
-  const bed=this.ctx.createGain();bed.gain.value=.07;bed.connect(this.master);this.ambience.push(bed);
+  const bed=this.ctx.createGain();bed.gain.value=.11;bed.connect(this.master);this.ambience.push(bed);
   // Detuned low drones and a slowly wavering high ghost voice.
   for (const [frequency,level] of [[55,.65],[55.4,.4],[82.41,.2],[220,.08],[233.08,.06]]) {
    const osc=this.ctx.createOscillator(),gain=this.ctx.createGain();osc.type='sine';osc.frequency.value=frequency;gain.gain.value=level;
@@ -26,7 +26,7 @@ export class HalloweenAudio {
   const wind=this.ctx.createBuffer(1,this.ctx.sampleRate*6,this.ctx.sampleRate);
   const samples=wind.getChannelData(0);for(let i=0;i<samples.length;i++)samples[i]=Math.random()*2-1;
   const source=this.ctx.createBufferSource(),filter=this.ctx.createBiquadFilter(),gain=this.ctx.createGain();
-  source.buffer=wind;source.loop=true;filter.type='bandpass';filter.frequency.value=420;filter.Q.value=1.5;gain.gain.value=.035;
+  source.buffer=wind;source.loop=true;filter.type='bandpass';filter.frequency.value=420;filter.Q.value=1.5;gain.gain.value=.055;
   source.connect(filter);filter.connect(gain);gain.connect(this.master);source.start();this.sources.push(source);this.ambience.push(filter,gain);
   const gust=this.ctx.createOscillator(),depth=this.ctx.createGain();gust.frequency.value=.09;depth.gain.value=270;gust.connect(depth);depth.connect(filter.frequency);gust.start();this.sources.push(gust);this.ambience.push(depth);
  }
