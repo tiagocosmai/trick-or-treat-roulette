@@ -19,8 +19,8 @@ npm run preview
 
 ## Como brincar
 
-1. Em **Configurações**, escolha **Produtos** (padrão) ou **Doces**. Produtos contém somente as oito casas da imagem de referência: CPM do Capeta, CTR do Terror, ROAS Sobrenatural, Frequência 666, Always On, Atribuição Paranormal, Alcance do Além e Otimização Infinita. Doces preserva o catálogo original de 16 opções, com oito inicialmente ativas. Cada modo guarda sua seleção separadamente; mantenha ao menos uma opção ativa.
-2. A **roleta coringa** começa habilitada e pode ser desligada nas configurações. Sem ela, a participação termina após o primeiro sorteio. Modo e configuração ficam salvos no navegador.
+1. Em **Configurações**, escolha **Produtos** (padrão) ou **Doces**. Produtos contém somente as oito casas da imagem de referência: CPM do Capeta, CTR do Terror, Alcance do Além, VTR de Arrepiar, Engajamento Sobrenatural, Conversão do Além, CPA de Arrepiar e ROAS Sobrenatural. Os destinos seguem a numeração de 1 a 8 dos cards de prêmio. Doces preserva o catálogo original de 16 opções, com oito inicialmente ativas. Cada modo guarda sua seleção separadamente; mantenha ao menos uma opção ativa.
+2. A **roleta coringa** começa desabilitada e pode ser habilitada nas configurações. Sem ela, a participação termina após o primeiro sorteio. Modo e configuração ficam salvos no navegador. Esta atualização aplica o novo padrão uma vez aos navegadores existentes; alterações feitas depois continuam salvas.
 3. Gire a roleta principal, pelo botão ou pelo ícone central. Todas as fatias têm a mesma chance.
 4. Se habilitada, gire a roleta coringa: novo giro (1/6, ≈16,7%), troque o doce (2/6, ≈33,3%), fim dos giros (2/6, ≈33,3%) ou ganhe em dobro (1/6, ≈16,7%). As seis fatias são intercaladas, sem opções iguais vizinhas, inclusive no fechamento do círculo. “Ganhe em dobro” ocupa uma única fatia por roleta; pode sair novamente em outras rodadas.
 5. Entregue o prêmio e avance para o próximo participante. Se sair um giro extra, use o botão para sortear somente o segundo doce. O primeiro doce é mantido e a participação termina automaticamente após o segundo sorteio: não há nova coringa nem outros giros extras.
@@ -53,3 +53,12 @@ O logo Nubank em `public/nubank.svg` é uma cópia local do [arquivo Nubank logo
 `src/assets/product-icons.png` contém oito ícones transparentes, recriados a partir da roleta de referência usando a ferramenta integrada de imagens. Prompt: reconstruir chama amarela, cursor lilás, gráfico roxo, 666 laranja, infinito lilás, fantasma lilás, pessoas laranja e engrenagem roxa, em uma grade de quatro colunas e duas linhas, sem rótulos ou fundos, mantendo o estilo de silhuetas da referência. Não são recortes literais do cartaz.
 
 A imagem compartilhada é carregada uma única vez e cada produto exibe sua região. Ela e o núcleo em `src/assets/wheel-mascot.png` são importados pelo Vite, que gera URLs com hash de conteúdo no build. Isso atualiza o cache quando a arte muda. Ambos têm preload para antecipar o carregamento.
+
+
+## Celebração e cards de prêmio
+
+No modo Produtos, o fim da rodada abre um modal acessível com celebração, destino e prêmio. O modo Doces mantém seu resultado habitual. Com coringa habilitada, o modal aparece depois do resultado coringa; se houver giro extra, mostra o primeiro prêmio e permite usar o giro. Ao encerrar o extra, exibe os dois cards. O prêmio em dobro mostra quantidade 2. É possível fechar com Escape, voltar ao resultado, reabrir pelo botão “Ver meu prêmio” ou avançar para o próximo participante.
+
+As oito artes originais estão incluídas em `public/cards/1.png` até `public/cards/8.png`, seguindo a relação em `public/cards/README.md`, e são pré-carregadas no modo Produtos. O build copia os cards para publicação. Se uma arte não puder ser carregada, o modal exibe um card textual com a descrição e o prêmio corretos.
+
+Também é possível associar PNG, JPG ou WebP em **Configurações → Cards de prêmio**. Esses uploads são guardados no IndexedDB do navegador atual e não são enviados ao servidor nem incluídos na publicação. A seleção de destinos é reiniciada uma vez para ativar os oito destinos revisados.
