@@ -17,15 +17,20 @@ export const candies = [
   { id: 'jujuba', name: 'Jujuba', icon: '🔮', color: '#9259bc' },
 ];
 export const products = [
- {id:'cpm',name:'CPM do Capeta',icon:'😈',spriteIndex:0,color:'#e97816'},
- {id:'ctr',name:'CTR do Terror',icon:'🖱️',spriteIndex:1,color:'#8b32c5'},
- {id:'roas',name:'ROAS Sobrenatural',icon:'📊',spriteIndex:2,color:'#30203f'},
- {id:'frequency',name:'Frequência 666',icon:'666',spriteIndex:3,color:'#d8791c'},
- {id:'always',name:'Always On',icon:'∞',spriteIndex:4,color:'#8a24c7'},
- {id:'attribution',name:'Atribuição Paranormal',icon:'👻',spriteIndex:5,color:'#392344'},
- {id:'reach',name:'Alcance do Além',icon:'👥',spriteIndex:6,color:'#e38c24'},
- {id:'optimization',name:'Otimização Infinita',icon:'⚙️',spriteIndex:7,color:'#682ba3'},
+ {id:'cpm',number:1,name:'CPM do Capeta',icon:'😈',spriteIndex:0,color:'#e97816',prize:'Dadinho ou 7 Belo',description:'Caro demais pra valer um prêmio. Pegue um docinho básico.'},
+ {id:'ctr',number:2,name:'CTR do Terror',icon:'🖱️',spriteIndex:1,color:'#8b32c5',prize:'Chiclete ou bala simples (temática de abóbora)',description:'Clicou no susto! Prêmio de entrada.'},
+ {id:'reach',number:3,name:'Alcance do Além',icon:'👥',spriteIndex:6,color:'#e38c24',prize:'Gomets Halloween (tubinho)',description:'Chegou até o além! Pegue um tubinho!'},
+ {id:'vtr',number:4,name:'VTR de Arrepiar',icon:'👁️',color:'#7028aa',prize:'Fofs (marshmallow)',description:'Assistiram até o fim! Desbloqueou um doce diferente!'},
+ {id:'engagement',number:5,name:'Engajamento Sobrenatural',icon:'💬',color:'#d8791c',prize:'Dipnlik ou Chaves (com tatuagem)',description:'A galera interagiu com tudo! Escolha seu prêmio.'},
+ {id:'conversion',number:6,name:'Conversão do Além',icon:'🎯',color:'#7a28b4',prize:'Docigoma (mini abóbora)',description:'A conversão aconteceu! Pegue uma mini abóbora.'},
+ {id:'cpa',number:7,name:'CPA de Arrepiar',icon:'🍓',color:'#e97816',prize:'Moranguete',description:'Aquisição eficiente merece um prêmio melhor!'},
+ {id:'roas',number:8,name:'ROAS Sobrenatural',icon:'📊',spriteIndex:2,color:'#30203f',prize:'Plutonita ou Azedinho de Morango',description:'Retorno de outro mundo! Escolha um doce especial.'},
 ];
+export function celebrationPrizes(firstPrize, currentPrize, bonusId) {
+ if (!currentPrize) return [];
+ if (firstPrize) return [{item:firstPrize,quantity:1},{item:currentPrize,quantity:1}];
+ return [{item:currentPrize,quantity:bonusId==='double'?2:1}];
+}
 export function phaseAfterPrize(isExtraSpin, bonusEnabled) {
  return isExtraSpin || !bonusEnabled ? 'done' : 'bonus';
 }
